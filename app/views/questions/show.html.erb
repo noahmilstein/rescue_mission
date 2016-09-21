@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @question.title %><br>
@@ -5,11 +9,22 @@
   <%= @question.description %><br>
   <strong>Created at: </strong>
   <%= @question.created_at %><br>
-  <strong>Updated at: </strong>
   <% if @question.updated_at != @question.created_at %>
+    <strong>Updated at: </strong>
     <%= @question.updated_at %>
+  <% end %>
+  <br>
+  <% if !@answers.blank? %>
+    <strong>Answers: </strong>
+    <ol>
+    <% @answers.each_with_index do |a, i| %>
+      <li><%= a.description %></li>
+    <% end %>
+    </ol>
   <% end %>
 
 </p>
+
+<%= render 'answers/form' %>
 
 <h3><%= link_to "Question Index", questions_path %></h3>
