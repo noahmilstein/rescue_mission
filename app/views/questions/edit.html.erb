@@ -1,0 +1,13 @@
+<h2><%= @question.title %></h2>
+<%= form_for(@question) do |f| %>
+  <div class="fields" id="description" value="#{question.description}">
+    <%= f.label :description %><br>
+    <%= f.text_field :description%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<h5><%= link_to 'Delete Question', @question, method: :delete, data: { confirm: "Are you sure?" } %></h5>
